@@ -11,16 +11,18 @@ std::string selected_path_file = "selected_file_path.txt";
 void sendFile(const std::string& filePath, const std::string& queue) {
     std::string fileName = filePath.substr(filePath.find_last_of("/\\") + 1);
 
-    std::ifstream file(filePath, std::ios::binary);
+    std::ifstream file(filePath, std::ios::binary); // 이진 모드로 파일 열기
     if (!file) {
         std::cerr << "Error to open file for read: " << filePath << std::endl;
         exit(1);
     }
-    std::string content(std::istreambuf_iterator<char>{file}, {});
+
+    std::vector<char> content((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
     file.close();
 
     nlohmann::json jsonContent;
     jsonContent["filename"] = fileName;
+    // 이진 데이터를 문자열로 변환하지 않고 그대로 사용
     jsonContent["content"] = content;
 
     std::string jsonString = jsonContent.dump();
@@ -32,7 +34,7 @@ int main () {
     int queueNumber;
     std::cout << "Enter a Queue number: ";
     std::cin >> queueNumber;
-    usingQueue = "B_to_A" + std::to_string(queueNumber);
+    usingQueue = "A_to_B" + std::to_string(queueNumber);
 
     std::cout << "1" << std::endl;
     AmqpClient::Channel::OpenOpts opts;
