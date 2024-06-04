@@ -34,7 +34,7 @@ int main () {
     int queueNumber;
     std::cout << "Enter a Queue number: ";
     std::cin >> queueNumber;
-    usingQueue = "A_to_B" + std::to_string(queueNumber);
+    usingQueue = "B_to_A" + std::to_string(queueNumber);
 
     std::cout << "1" << std::endl;
     AmqpClient::Channel::OpenOpts opts;
