@@ -27,7 +27,7 @@ void receiveFile(const std::string& queue, const std::string& saveDirectory) {
     nlohmann::json jsonContent = nlohmann::json::parse(jsonString);
 
     std::string fileName = jsonContent["filename"];
-    std::string content = jsonContent["content"];
+    std::vector<char> content = jsonContent["content"].get<std::vector<char>>();
 
     std::ofstream file(saveDirectory + "/" + fileName, std::ios::binary);
     if (!file) {
@@ -44,30 +44,24 @@ int main () {
     std::cin >> queueNumber;
     usingQueue = "B_to_A" + std::to_string(queueNumber);
 
-    std::cout << "1" << std::endl;
     AmqpClient::Channel::OpenOpts opts;
-    std::cout << "1.1" << std::endl;
     opts.auth = AmqpClient::Channel::OpenOpts::BasicAuth("try1", "1234");
     opts.host = "166.104.245.156";
     opts.vhost = "/1";
     opts.port = 5672;
     opts.frame_max = 131072;
-    std::cout << "1.2" << std::endl;
 
     channel = AmqpClient::Channel::Open(opts);
-    std::cout << "2" << std::endl;
    
     std::ifstream pathFile(selected_path);
     if (!pathFile.is_open()) {
         std::cerr << "Error to open selected path: " << selected_path << std::endl;
         return 1;
     }
-    std::cout << "3" << std::endl;
 
     std::string saveDirectory;
     std::getline(pathFile, saveDirectory);
     pathFile.close(); // 저장할 디렉토리
-    std::cout << "4" << std::endl;
 
     receiveFile(usingQueue, saveDirectory);
     return 0;
