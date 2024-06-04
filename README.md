@@ -45,6 +45,7 @@ Ubuntu 22.04
 * cd vcpkg
 * ./bootstrap-vcpkg.sh
 * ./vcpkg integrate install
+* sudo apt-get install build-essential
 * ./vcpkg install librabbitmq
 <br/><br/>
 <br/><br/>
