@@ -80,7 +80,9 @@ http://localhost:15672/
 <br/><br/>
 ID: Guest 
 <br/><br/>
-PASSWORD: Guest Port 15672
+PASSWORD: Guest
+<br/><br/>
+Port: 15672
 <br/><br/>
 To start with python3 interface you should install tkinter by below 
 <br/><br/>
