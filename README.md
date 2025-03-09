@@ -76,7 +76,9 @@ Ubuntu 22.04
 <br/><br/>
 # [Rabbitmq Server GUI] 
 <br/><br/>
-http://localhost:15672/ ID: Guest PASSWORD: Guest Port 15672
+http://localhost:15672/ 
+ID: Guest 
+PASSWORD: Guest Port 15672
 <br/><br/>
 To start with python3 interface you should install tkinter by below 
 <br/><br/>
